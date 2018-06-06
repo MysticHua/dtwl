@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Spring Boot HelloWorld案例
  *
- * Created by bysocket on 16/4/26.
+ * Created by tong.hua on 2018-06-06.
  */
 @RestController
 public class HelloWorldController {
