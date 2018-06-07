@@ -124,6 +124,12 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>${mybatis.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.16</version>
+        </dependency>
     </dependencies>
 
     <build>
