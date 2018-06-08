@@ -6,7 +6,7 @@
     <groupId>name.huatong</groupId>
     <artifactId>dtwl</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <name>dtwl</name>
     <description>dtwl for Spring Boot</description>

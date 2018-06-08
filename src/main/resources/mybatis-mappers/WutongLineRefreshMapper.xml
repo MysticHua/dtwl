@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="name.huatong.dtwl.dao.WutongLineRefreshDao">
+
+	<sql id="where">
+		<where>
+			<if test="params.total_refresh_count != null and params.total_refresh_count != ''">
+				and total_refresh_count = #{params.totalRefreshCount} 
+			</if>
+			<if test="params.succ_refresh_count != null and params.succ_refresh_count != ''">
+				and succ_refresh_count = #{params.succRefreshCount} 
+			</if>
+			<if test="params.fail_refresh_count != null and params.fail_refresh_count != ''">
+				and fail_refresh_count = #{params.failRefreshCount} 
+			</if>
+			<if test="params.last_succ_time != null and params.last_succ_time != ''">
+				and last_succ_time = #{params.lastSuccTime} 
+			</if>
+			<if test="params.gmt_create != null and params.gmt_create != ''">
+				and gmt_create = #{params.gmtCreate} 
+			</if>
+			<if test="params.gmt_modified != null and params.gmt_modified != ''">
+				and gmt_modified = #{params.gmtModified} 
+			</if>
+			<if test="params.memo != null and params.memo != ''">
+				and memo = #{params.memo} 
+			</if>
+		
+		</where>
+	</sql>
+
+	<select id="count" resultType="int">
+		select count(1) from wutong_line_refresh t
+		<include refid="where" />
+	</select>
+
+	<select id="list" resultType="WutongLineRefresh">
+		select * from wutong_line_refresh t
+		<include refid="where" />
+		${params.orderBy}
+		limit #{offset}, #{limit}
+	</select>
+
+	<update id="update">
+		update wutong_line_refresh t
+		<set>
+			<if test="total_refresh_count != null">
+				total_refresh_count = #{totalRefreshCount}, 
+			</if>
+			<if test="succ_refresh_count != null">
+				succ_refresh_count = #{succRefreshCount}, 
+			</if>
+			<if test="fail_refresh_count != null">
+				fail_refresh_count = #{failRefreshCount}, 
+			</if>
+			<if test="last_succ_time != null">
+				last_succ_time = #{lastSuccTime}, 
+			</if>
+			<if test="gmt_create != null">
+				gmt_create = #{gmtCreate}, 
+			</if>
+			<if test="gmt_modified != null">
+				gmt_modified = #{gmtModified}, 
+			</if>
+			<if test="memo != null">
+				memo = #{memo}, 
+			</if>
+
+		</set>
+
+		where t.id = #{id}
+	</update>
+
+</mapper>

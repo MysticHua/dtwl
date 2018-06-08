@@ -25,6 +25,7 @@ public class TemplateUtil {
 		List<String> beanFieldName = input.getBeanFieldName();
 		List<String> beanFieldType = input.getBeanFieldType();
 		List<String> beanFieldValue = input.getBeanFieldValue();
+		List<String> columnComment = input.getColumnComment();
 
 		String text = getTemplete("java.txt");
 		text = text.replace("{beanPackageName}", beanPackageName).replace("{beanName}", beanName);
@@ -38,7 +39,7 @@ public class TemplateUtil {
 		}
 
 		text = text.replace("{import}", imports);
-		String filelds = getFields(beanFieldName, beanFieldType, beanFieldValue);
+		String filelds = getFields(beanFieldName, beanFieldType, beanFieldValue,columnComment);
 		text = text.replace("{filelds}", filelds);
 		text = text.replace("{getset}", getset(beanFieldName, beanFieldType));
 
@@ -47,7 +48,7 @@ public class TemplateUtil {
 	}
 
 	private static String getFields(List<String> beanFieldName, List<String> beanFieldType,
-			List<String> beanFieldValue) {
+			List<String> beanFieldValue,List<String> columnComment) {
 		StringBuffer buffer = new StringBuffer();
 		int size = beanFieldName.size();
 		for (int i = 0; i < size; i++) {
@@ -56,7 +57,8 @@ public class TemplateUtil {
 				continue;
 			}
 			String type = beanFieldType.get(i);
-			buffer.append("\tprivate ").append(type).append(" ").append(name);
+			String comment = columnComment.get(i);
+			buffer.append("\tprivate ").append(type).append(" ").append(name).append(";").append("//").append(comment).append("\n");
 			// 默认值
 //			String value = beanFieldValue.get(i);
 //			if (!StringUtils.isEmpty(value)) {
@@ -73,7 +75,7 @@ public class TemplateUtil {
 //
 //				buffer.append(value);
 //			}
-			buffer.append(";\n");
+			//buffer.append(";\n");
 		}
 
 		return buffer.toString();

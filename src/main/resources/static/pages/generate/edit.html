@@ -11,7 +11,7 @@
             <div class="form-group">
                 <label class="col-md-2 control-label">表名</label>
                 <div class="col-md-10">
-                    <input class="form-control" placeholder="表名" type="text" name="tableName" id="tableName" value="sys_user"
+                    <input class="form-control" placeholder="表名" type="text" name="tableName" id="tableName" value=""
                         data-bv-notempty="true"
                         data-bv-notempty-message="表名 不能为空">
                     <button id="showInfo" class="btn btn-primary">预览代码</button>
@@ -146,7 +146,9 @@
                     
                     tr.append("<td>" + columnNameInput + columnName + "</td>");
                     tr.append("<td>" + f['columnType'] + "</td>");
-                    tr.append("<td>" + f['columnComment'] + "</td>");
+                    //tr.append("<td>" + f['columnComment'] + "</td>");
+                    var columnCommentInput = "<input name='columnComment' class='form-control' value='" + f['columnComment'] +"'>";
+                    tr.append("<td>" + columnCommentInput + "</td>");
                     var name = f['name'];
                     var nameInput = "<input name='beanFieldName' class='form-control' value='" + name +"'>";
                     tr.append("<td>" + nameInput + "</td>");
