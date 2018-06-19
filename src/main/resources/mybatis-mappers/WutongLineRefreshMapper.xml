@@ -20,9 +20,6 @@
 			<if test="params.gmt_create != null and params.gmt_create != ''">
 				and gmt_create = #{params.gmtCreate} 
 			</if>
-			<if test="params.gmt_modified != null and params.gmt_modified != ''">
-				and gmt_modified = #{params.gmtModified} 
-			</if>
 			<if test="params.memo != null and params.memo != ''">
 				and memo = #{params.memo} 
 			</if>

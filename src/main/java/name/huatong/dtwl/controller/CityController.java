@@ -1,26 +1,10 @@
 package name.huatong.dtwl.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import name.huatong.dtwl.page.table.PageTableRequest;
-import name.huatong.dtwl.page.table.PageTableHandler;
-import name.huatong.dtwl.page.table.PageTableResponse;
-import name.huatong.dtwl.page.table.PageTableHandler.CountHandler;
-import name.huatong.dtwl.page.table.PageTableHandler.ListHandler;
+import io.swagger.annotations.ApiOperation;
 import name.huatong.dtwl.dao.CityDao;
 import name.huatong.dtwl.model.City;
-
-import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/citys")
@@ -30,7 +14,7 @@ public class CityController {
     private CityDao cityDao;
 
     @PostMapping
-    @ApiOperation(value = "保存")
+    @ApiOperation(value = "淇濆瓨")
     public City save(@RequestBody City city) {
         cityDao.save(city);
 
@@ -38,13 +22,13 @@ public class CityController {
     }
 
     @GetMapping("/{id}")
-    @ApiOperation(value = "根据id获取")
+    @ApiOperation(value = "鏍规嵁id鑾峰彇")
     public City get(@PathVariable Long id) {
         return cityDao.getById(id);
     }
 
     @PutMapping
-    @ApiOperation(value = "修改")
+    @ApiOperation(value = "淇敼")
     public City update(@RequestBody City city) {
         cityDao.update(city);
 
@@ -52,7 +36,7 @@ public class CityController {
     }
 
     /*@GetMapping
-    @ApiOperation(value = "列表")
+    @ApiOperation(value = "鍒楄〃")
     public PageTableResponse list(PageTableRequest request) {
         return new PageTableHandler(new CountHandler() {
 
@@ -70,7 +54,7 @@ public class CityController {
     }*/
 
     @DeleteMapping("/{id}")
-    @ApiOperation(value = "删除")
+    @ApiOperation(value = "鍒犻櫎")
     public void delete(@PathVariable Long id) {
         cityDao.delete(id);
     }
