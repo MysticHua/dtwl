@@ -12,3 +12,16 @@ spring:
       enabled: true
 server:
   port: 8082
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:/mybatis-mappers/*
+  type-aliases-package: name.huatong.dtwl.model
+logging:
+  config: classpath:logback-admin.xml
+log:
+  level:
+    root: info
+    my: debug
+  file: logs/admin-server.log
+  maxsize: 30MB

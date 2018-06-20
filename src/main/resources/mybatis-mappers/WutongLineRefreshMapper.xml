@@ -42,28 +42,22 @@
 	<update id="update">
 		update wutong_line_refresh t
 		<set>
-			<if test="total_refresh_count != null">
+			<if test="totalRefreshCount != null">
 				total_refresh_count = #{totalRefreshCount}, 
 			</if>
-			<if test="succ_refresh_count != null">
+			<if test="succRefreshCount != null">
 				succ_refresh_count = #{succRefreshCount}, 
 			</if>
-			<if test="fail_refresh_count != null">
+			<if test="failRefreshCount != null">
 				fail_refresh_count = #{failRefreshCount}, 
 			</if>
-			<if test="last_succ_time != null">
+			<if test="lastSuccTime != null">
 				last_succ_time = #{lastSuccTime}, 
-			</if>
-			<if test="gmt_create != null">
-				gmt_create = #{gmtCreate}, 
-			</if>
-			<if test="gmt_modified != null">
-				gmt_modified = #{gmtModified}, 
 			</if>
 			<if test="memo != null">
 				memo = #{memo}, 
 			</if>
-
+			update_time = now()
 		</set>
 
 		where t.id = #{id}
