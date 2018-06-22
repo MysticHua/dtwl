@@ -92,7 +92,7 @@ public class WutongLineRefreshController {
             }
         }
 
-        System.out.println("request return："+JSON.toJSONString(wtBaseResultModel));
+        System.out.println("response："+JSON.toJSONString(wtBaseResultModel));
     }
 
     /**
@@ -149,49 +149,4 @@ public class WutongLineRefreshController {
         return result;
     }
 
-    @PostMapping
-    @ApiOperation(value = "保存")
-    public WutongLineRefresh save(@RequestBody WutongLineRefresh wutongLineRefresh) {
-        wutongLineRefreshDao.save(wutongLineRefresh);
-
-        return wutongLineRefresh;
-    }
-
-    @GetMapping("/{id}")
-    @ApiOperation(value = "根据id获取")
-    public WutongLineRefresh get(@PathVariable Long id) {
-        return wutongLineRefreshDao.getById(id);
-    }
-
-    @PutMapping
-    @ApiOperation(value = "修改")
-    public WutongLineRefresh update(@RequestBody WutongLineRefresh wutongLineRefresh) {
-        wutongLineRefreshDao.update(wutongLineRefresh);
-
-        return wutongLineRefresh;
-    }
-
-    @GetMapping
-    @ApiOperation(value = "列表")
-    public PageTableResponse list(PageTableRequest request) {
-        return new PageTableHandler(new CountHandler() {
-
-            @Override
-            public int count(PageTableRequest request) {
-                return wutongLineRefreshDao.count(request.getParams());
-            }
-        }, new ListHandler() {
-
-            @Override
-            public List<WutongLineRefresh> list(PageTableRequest request) {
-                return wutongLineRefreshDao.list(request.getParams(), request.getOffset(), request.getLimit());
-            }
-        }).handle(request);
-    }
-
-    @DeleteMapping("/{id}")
-    @ApiOperation(value = "删除")
-    public void delete(@PathVariable Long id) {
-        wutongLineRefreshDao.delete(id);
-    }
 }
