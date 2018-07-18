@@ -6,7 +6,7 @@
     <groupId>name.huatong</groupId>
     <artifactId>dtwl</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <name>dtwl</name>
     <description>dtwl for Spring Boot</description>
@@ -136,6 +136,13 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.47</version>
+        </dependency>
+
+        <!--xxl-jod 定时调度-->
+        <dependency>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-job-core</artifactId>
+            <version>1.9.1</version>
         </dependency>
 
     </dependencies>

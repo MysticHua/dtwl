@@ -2,30 +2,26 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
 #    url: jdbc:mysql://localhost:3306/boot_backed?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
-    url: jdbc:mysql://101.132.43.115:3306/myfirstdb?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
-#    url: jdbc:mysql://172.19.195.147:3306/dtwl?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+#    url: jdbc:mysql://101.132.43.115:3306/myfirstdb?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+    url: jdbc:mysql://localhost:3306/dtwl?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
     username: root
-    password: mysqlht8309587
+    password: 123456
   http:
     encoding:
       charset: UTF-8
       enabled: true
 server:
-  port: 8081
-
-#mybatis
+  port: 8082
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
   mapper-locations: classpath:/mybatis-mappers/*
   type-aliases-package: name.huatong.dtwl.model
-
-#log
 logging:
   config: classpath:logback-admin.xml
 log:
   level:
     root: info
-    my: info
-  file: home/logs/admin-server.log
+    my: debug
+  file: logs/admin-server.log
   maxsize: 30MB

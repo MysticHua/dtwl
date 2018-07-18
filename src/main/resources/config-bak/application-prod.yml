@@ -12,15 +12,11 @@ spring:
       enabled: true
 server:
   port: 8081
-
-#mybatis
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
   mapper-locations: classpath:/mybatis-mappers/*
   type-aliases-package: name.huatong.dtwl.model
-
-#log
 logging:
   config: classpath:logback-admin.xml
 log:
