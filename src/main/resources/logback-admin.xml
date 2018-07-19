@@ -71,6 +71,7 @@
 
 	<root level="${rootlevel}">
 		<appender-ref ref="STDOUT" />
+		<appender-ref ref="adminLog" />
 		<appender-ref ref="errorLog" />
 	</root>
 
