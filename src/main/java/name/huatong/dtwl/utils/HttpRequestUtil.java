@@ -89,7 +89,7 @@ public class HttpRequestUtil {
             // 打开和URL之间的连接
             URLConnection conn = realUrl.openConnection();
             //设置cookie
-            if(StringUtils.isNoneBlank()){
+            if(StringUtils.isNoneBlank(cookie)){
                 conn.setRequestProperty("Cookie", cookie);
             }
             // 设置通用的请求属性 设置请求格式
