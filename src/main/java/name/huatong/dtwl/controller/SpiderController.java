@@ -27,9 +27,9 @@ public class SpiderController {
     //匹配各省份
     private static String provinceItemRegEx = "<td><a href=[\\s\\S]{0,}?<br/></a></td>";
 
-    private static String proviceIdRegEx = "[^0-9]+?";
+    private static String proviceIdRegEx = "\\d+";
 
-    private static String proviceNameRegEx = "[^\\u4e00-\\u9fa5]+?";
+    private static String proviceNameRegEx = "[\\u4e00-\\u9fa5]+";
 
 
     @GetMapping("/doSpiderCity")
@@ -60,9 +60,9 @@ public class SpiderController {
             Matcher proviceIdMatcher = proviceIdPattern.matcher(provinceItemHtml);
             Matcher proviceNameMatcher = proviceNamePattern.matcher(provinceItemHtml);
             if(proviceIdMatcher.find() && proviceNameMatcher.find()){
-                String provinceId =proviceIdMatcher.replaceAll("").trim();
-                String provinceName = proviceNameMatcher.replaceAll("").trim();
-                //System.out.println("省份的ID为:"+provinceId+",名字为："+provinceName);
+                String provinceId =proviceIdMatcher.group();
+                String provinceName = proviceNameMatcher.group();
+                System.out.println("省份的ID为:"+provinceId+",名字为："+provinceName);
 
                 //从这里开始匹配每一个省的地区
             }
