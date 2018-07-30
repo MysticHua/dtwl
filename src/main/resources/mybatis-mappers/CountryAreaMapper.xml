@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="name.huatong.dtwl.dao.CountryAreaDao">
+
+	<sql id="where">
+		<where>
+			<if test="params.id != null and params.id != ''">
+				and id = #{params.id} 
+			</if>
+			<if test="params.city_id != null and params.city_id != ''">
+				and city_id = #{params.cityId} 
+			</if>
+			<if test="params.county_id != null and params.county_id != ''">
+				and county_id = #{params.countyId} 
+			</if>
+			<if test="params.city_name != null and params.city_name != ''">
+				and city_name = #{params.cityName} 
+			</if>
+			<if test="params.county_name != null and params.county_name != ''">
+				and county_name = #{params.countyName} 
+			</if>
+			<if test="params.createTime != null and params.createTime != ''">
+				and createTime = #{params.createTime} 
+			</if>
+			<if test="params.updateTime != null and params.updateTime != ''">
+				and updateTime = #{params.updateTime} 
+			</if>
+		
+		</where>
+	</sql>
+
+	<select id="count" resultType="int">
+		select count(1) from country_area t
+		<include refid="where" />
+	</select>
+
+	<select id="list" resultType="CountryArea">
+		select * from country_area t
+		<include refid="where" />
+		${params.orderBy}
+		limit #{offset}, #{limit}
+	</select>
+
+	<update id="update">
+		update country_area t
+		<set>
+			<if test="city_id != null">
+				city_id = #{cityId}, 
+			</if>
+			<if test="county_id != null">
+				county_id = #{countyId}, 
+			</if>
+			<if test="city_name != null">
+				city_name = #{cityName}, 
+			</if>
+			<if test="county_name != null">
+				county_name = #{countyName}, 
+			</if>
+			<if test="createTime != null">
+				createTime = #{createTime}, 
+			</if>
+			<if test="updateTime != null">
+				updateTime = #{updateTime}, 
+			</if>
+
+		</set>
+
+		where t.id = #{id}
+	</update>
+
+</mapper>
