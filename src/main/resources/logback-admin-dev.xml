@@ -15,7 +15,7 @@
 	</appender>
 
 	<appender name="adminLog"
-		class="ch.qos.logback.core.rolling.RollingFileAppender">
+			  class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${logFile}</file>
 		<encoder>
 			<pattern>%d [%thread] %-5level -[%file:%line]- %msg%n
@@ -29,7 +29,7 @@
 	</appender>
 
 	<appender name="errorLog"
-		class="ch.qos.logback.core.rolling.RollingFileAppender">
+			  class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${logFile}.error</file>
 		<encoder>
 			<pattern>%d [%thread] %-5level %logger{36} -[%file:%line]- %msg%n
@@ -48,7 +48,7 @@
 	</appender>
 
 	<appender name="sqlLog"
-		class="ch.qos.logback.core.rolling.RollingFileAppender">
+			  class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${logFile}.sql</file>
 		<encoder>
 			<pattern>%d [%thread] %msg%n
@@ -71,7 +71,6 @@
 
 	<root level="${rootlevel}">
 		<appender-ref ref="STDOUT" />
-		<appender-ref ref="adminLog" />
 		<appender-ref ref="errorLog" />
 	</root>
 

@@ -1,0 +1,42 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://172.19.195.147:3306/dtwl?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+    username: root
+    password: mysqlht8309587
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+server:
+  port: 9081
+
+#mybatis
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:/mybatis-mappers/*
+  type-aliases-package: name.huatong.dtwl.model
+
+#log
+logging:
+  config: classpath:logback-admin-prod.xml
+log:
+  level:
+    root: info
+    my: info
+  file: /home/logs/admin-server.log
+  maxsize: 30MB
+
+#定时调度
+xxl:
+  job:
+    executor:
+      logpath: /home/logs/xxl-job/jobhandler
+      appname: dtwl
+      port: 9999
+      logretentiondays: -1
+      ip:
+    admin:
+      addresses: http://127.0.0.1:8082/xxl-job-admin
+    accessToken:
