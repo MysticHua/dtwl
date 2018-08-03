@@ -143,7 +143,7 @@ public class HttpRequestUtil {
             URL realUrl = new URL(url);
             // 打开和URL之间的连接
             URLConnection conn = realUrl.openConnection();
-            if(StringUtils.isNoneBlank()){
+            if(StringUtils.isNoneBlank(cookie)){
                 //设置cookie
                 conn.setRequestProperty("Cookie", cookie);
             }

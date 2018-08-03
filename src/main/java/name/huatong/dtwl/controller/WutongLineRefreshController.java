@@ -16,15 +16,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-//@RequestMapping("/wutongLineRefreshs")
+@RequestMapping("/wutong")
 public class WutongLineRefreshController {
 
     private static final Logger log = LoggerFactory.getLogger("adminLogger");
@@ -37,13 +38,34 @@ public class WutongLineRefreshController {
 
     //商户号
     public static String userAgent = "2767BBB06DD5982858A816130C08A4812E366B0C72FAC81B1201DA8D6BBEFF72515DC2E2EEF3547B";
+    //cookie
+    public static String cookie = "ASP.NET_SessionId=oakpayvs1bfz4nognofoursb";
 
-    @GetMapping("/doRefresh")
+
+    @GetMapping("/publishLine")
     public void publishLine(){
-        String postUrl = "http://android.chinawutong.com/AddData2.ashx";
-        Map<String,Object> param = new HashMap<>();
-        HttpRequestUtil.sendPost(postUrl,param,"utf-8","");
 
+
+        String postUrl = "http://android.chinawutong.com/AddData2.ashx";
+        //String param1 = "DeliverySource=0&Loadingtime=&Operating=1&UserType=4&cheChang=1.8&cheType=0&detailFromArea=%E5%B8%82%E8%BE%96%E5%8C%BA&detailToArea=%E5%B8%82%E8%BE%96%E5%8C%BA&distance=175.92&flat=31.249161710015&flng=121.48789948569&from_area=798&goods_name=%E8%AE%BE%E5%A4%87&goods_type=1&huiyuan_id=1998049&huiyuan_name=13391256206&huo_contact=%E8%8A%B1%E7%BB%8F%E7%90%86&huo_contact_to=&huo_phone=13391256205&huo_phone_to=&huounit=0&isChangqi=0&isNewCarType=2&isNewCheChang=1&qwYunjia=0&r_12459=36784&sendCheId=&sendCust_id=&shuliang=1&shuoming=&source=iPhone&tiji=10&tlat=30.259244461536&tlng=120.21937541572&to_area=927&trans_mode=2&type=addGoods&ver_version=1&weight=100&yxq=";
+        //上海市辖区-浙江杭州-设备-10吨-10方
+        String param = "DeliverySource=0&Loadingtime=&Operating=1&UserType=4&cheChang=1.8&cheType=0&detailFromArea=%E5%B8%82%E8%BE%96%E5%8C%BA&detailToArea=%E5%B8%82%E8%BE%96%E5%8C%BA&distance=176.07&flat=31.249161710015&flng=121.48789948569&from_area=798&goods_name=%E8%AE%BE%E5%A4%87&goods_type=1&huiyuan_id=1998049&huiyuan_name=13391256205&huo_contact=%E8%8A%B1%E7%BB%8F%E7%90%86&huo_contact_to=&huo_phone=13391256205&huo_phone_to=&huounit=1&isChangqi=0&isNewCarType=2&isNewCheChang=1&qwYunjia=0&r_3951=28672&sendCheId=&sendCust_id=&shuliang=1&shuoming=&source=iPhone&tiji=10&tlat=30.259244461536&tlng=120.21937541572&to_area=927&trans_mode=2&type=addGoods&ver_version=1&weight=10&yxq=";
+        //上海市辖区-江苏苏州-服装-1吨-1方
+        String param2 = "DeliverySource=0&Loadingtime=&Operating=1&UserType=4&cheChang=1.8&cheType=0&detailFromArea=%E5%98%89%E5%AE%9A%E5%8C%BA&detailToArea=%E5%B8%82%E8%BE%96%E5%8C%BA&distance=76.12&flat=31.364338055434&flng=121.25101353756&from_area=805&goods_name=%E6%9C%8D%E8%A3%85%E9%9E%8B%E5%8C%85&goods_type=1&huiyuan_id=1998049&huiyuan_name=13391256206&huo_contact=%E8%8A%B1%E7%BB%8F%E7%90%86&huo_contact_to=&huo_phone=13391256205&huo_phone_to=&huounit=1&isChangqi=0&isNewCarType=2&isNewCheChang=1&qwYunjia=0&r_40668=27702&sendCheId=&sendCust_id=&shuliang=1&shuoming=&source=iPhone&tiji=1&tlat=31.317987367952&tlng=120.61990711549&to_area=851&trans_mode=2&type=addGoods&ver_version=1&weight=1&yxq=";
+        //上海市市辖区-江苏无锡江阴-汽配摩托-1吨-1方
+        String param3 = "DeliverySource=0&Loadingtime=&Operating=1&UserType=4&cheChang=1.8&cheType=0&detailFromArea=%E5%98%89%E5%AE%9A%E5%8C%BA&detailToArea=%E6%B1%9F%E9%98%B4%E5%B8%82&distance=115.05&flat=31.364338055434&flng=121.25101353756&from_area=805&goods_name=%E6%B1%BD%E8%BD%A6%E6%91%A9%E6%89%98&goods_type=1&huiyuan_id=1998049&huiyuan_name=13391256206&huo_contact=%E8%8A%B1%E7%BB%8F%E7%90%86&huo_contact_to=&huo_phone=13391256205&huo_phone_to=&huounit=1&isChangqi=0&isNewCarType=2&isNewCheChang=1&qwYunjia=0&r_33734=36319&sendCheId=&sendCust_id=&shuliang=1&shuoming=&source=iPhone&tiji=1&tlat=31.837425422051&tlng=120.31067896716&to_area=829&trans_mode=2&type=addGoods&ver_version=1&weight=1&yxq=";
+        String[] goodsArr = {param,param2,param3};
+
+        String result = "";
+        for(int i = 0 ;i<goodsArr.length;i++){
+            result = publishLine(postUrl,goodsArr[i], "utf-8", userAgent);
+            WtBaseResultModel wtBaseResultModel = JSON.parseObject(result, WtBaseResultModel.class);
+
+            //逻辑判断 设计表结构 入库
+
+        }
+
+        System.out.println(result);
     }
 
     @GetMapping("/doRefresh")
@@ -157,6 +179,72 @@ public class WutongLineRefreshController {
                 }
             } catch (Exception e2) {
                 e2.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 发布货源线路
+     * @param postUrl
+     * @param param
+     * @param charset
+     * @param userAgent
+     * @return
+     */
+    private String publishLine(String postUrl,String param,String charset,String userAgent){
+        PrintWriter out = null;
+        BufferedReader in = null;
+        String result = "";
+        String line;
+        StringBuffer sb = new StringBuffer();
+        try {
+            URL realUrl = new URL(postUrl);
+            // 打开和URL之间的连接
+            URLConnection conn = realUrl.openConnection();
+            if(StringUtils.isNoneBlank(cookie)){
+                //设置cookie
+                conn.setRequestProperty("Cookie", cookie);
+            }
+            //设置userAgent
+            conn.setRequestProperty("User-Agent",userAgent);
+            // 设置通用的请求属性 设置请求格式
+            conn.setRequestProperty("contentType", charset);
+            conn.setRequestProperty("content-type", "application/x-www-form-urlencoded");
+            //设置超时时间
+            conn.setConnectTimeout(5000);
+            conn.setReadTimeout(5000);
+            // 发送POST请求必须设置如下两行
+            conn.setDoOutput(true);
+            conn.setDoInput(true);
+            // 获取URLConnection对象对应的输出流
+            out = new PrintWriter(conn.getOutputStream());
+            // 发送请求参数
+            out.print(param);
+            // flush输出流的缓冲
+            out.flush();
+            // 定义BufferedReader输入流来读取URL的响应    设置接收格式
+            in = new BufferedReader(
+                    new InputStreamReader(conn.getInputStream(), charset));
+            while ((line = in.readLine()) != null) {
+                sb.append(line);
+            }
+            result = sb.toString();
+        } catch (Exception e) {
+            System.out.println("发送 POST请求出现异常!" + e);
+            e.printStackTrace();
+        }
+        //使用finally块来关闭输出流、输入流
+        finally {
+            try {
+                if (out != null) {
+                    out.close();
+                }
+                if (in != null) {
+                    in.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
         }
         return result;
