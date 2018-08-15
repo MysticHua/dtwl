@@ -30,6 +30,7 @@ public class MD5Signaturer implements Signaturer {
      * @see com.bench.platform.signature.Signaturer#check(java.lang.String,
      * java.lang.String, java.lang.String)
      */
+    @Override
     public boolean check(String content, String signature, String charset) {
         // TODO Auto-generated method stub
         return StringUtils.equals(signature, Md5Encrypt.md5(key, content, charset));
@@ -41,6 +42,7 @@ public class MD5Signaturer implements Signaturer {
      * @see com.bench.platform.signature.Signaturer#check(java.lang.String,
      * java.lang.String)
      */
+    @Override
     public boolean check(String content, String signature) {
         // TODO Auto-generated method stub
         return check(content, signature, null);
@@ -52,6 +54,7 @@ public class MD5Signaturer implements Signaturer {
      * @see com.bench.platform.signature.Signaturer#check(byte[],
      * java.lang.String)
      */
+    @Override
     public boolean check(byte[] content, String signature) {
         // TODO Auto-generated method stub
         return StringUtils.equals(signature, Md5Encrypt.md5(key, content));
@@ -63,6 +66,7 @@ public class MD5Signaturer implements Signaturer {
      * @see com.bench.platform.signature.Signaturer#check(java.io.InputStream,
      * java.lang.String)
      */
+    @Override
     public boolean check(InputStream is, String signature) {
         // TODO Auto-generated method stub
         try {
@@ -78,6 +82,7 @@ public class MD5Signaturer implements Signaturer {
      * 
      * @see com.bench.platform.signature.Signaturer#sign(java.lang.String)
      */
+    @Override
     public String sign(String content) {
         // TODO Auto-generated method stub
         return Md5Encrypt.md5(key, content);
